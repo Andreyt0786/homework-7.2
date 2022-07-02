@@ -29,7 +29,7 @@ fun main() {
     )
 
     // Убрано для проверки тестов
-    /*println(WallService.add(post2))
+   /* println(WallService.add(post2))
     println(WallService.add(post))
     println(WallService.add(post3))
     println(WallService.add(post4))
