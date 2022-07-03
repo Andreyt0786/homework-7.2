@@ -54,11 +54,11 @@ class WallServiceTest {
             )
         )
         val post = Post(
-            1, 9, 2, 1, 35, "Super",
+            6, 9, 2, 1, 35, "Super",
             3, 1, false, commentToWall
         )
         val result = service.update(post)
-        assertEquals(false, result)
+        assertEquals(true, result)
 
     }
 
