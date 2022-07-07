@@ -10,12 +10,12 @@ class WallServiceTest {
         val service = WallService()
         service.add(Post(
                 1, 9, 2, 1, 35, "Super",
-            3, 1, false, commentToWall
+            3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
         ))
         val result = service.add(
             Post(
                 6, 9, 2, 1, 35, "Super",
-                3, 1, false, commentToWall
+                3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
             )
         )
         val(id)=result
@@ -31,12 +31,12 @@ class WallServiceTest {
         service.add(
             Post(
                 6, 9, 2, 1, 35, "Super",
-                3, 1, false, commentToWall
+                3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
             )
         )
         val post = Post(
             1, 9, 2, 1, 35, "Super",
-            3, 1, false, commentToWall
+            3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
         )
         val result = service.update(post)
         assertEquals(false, result)
@@ -50,12 +50,12 @@ class WallServiceTest {
         service.add(
             Post(
                 6, 9, 2, 1, 35, "Super",
-                3, 1, false, commentToWall
+                3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
             )
         )
         val post = Post(
             6, 9, 2, 1, 35, "Super",
-            3, 1, false, commentToWall
+            3, 1, false, commentToWall, arrayOf(audioAttachment(),videoAttachment())
         )
         val result = service.update(post)
         assertEquals(true, result)

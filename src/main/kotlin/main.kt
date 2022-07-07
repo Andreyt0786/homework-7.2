@@ -1,17 +1,14 @@
-
-
 import java.util.*
 
 
 fun main() {
     val commentToWall = CommentToWall(5, true, true, false, false)
 
-
     val post = Post(
         5, 1, 2, 1, 356, "Super",
-        3, 1, false, commentToWall
+        3, 1, false, commentToWall,arrayOf(audioAttachment(), videoAttachment())
     )
-    val post2 = Post(
+    /*val post2 = Post(
         1, 3, 2, 1, 35, "Super",
         3, 1, false, commentToWall
     )
@@ -26,15 +23,15 @@ fun main() {
     val postTest = Post(
         3, 222, 2, 1, 35, "Super",
         3, 1, false, commentToWall
-    )
+    )*/
 
     // Убрано для проверки тестов
-   /* println(WallService.add(post2))
-    println(WallService.add(post))
-    println(WallService.add(post3))
-    println(WallService.add(post4))
+    /* println(WallService.add(post2))
+     println(WallService.add(post))
+     println(WallService.add(post3))
+     println(WallService.add(post4))
 
-    print(WallService.update(postTest))*/
+     print(WallService.update(postTest))*/
 
 }
 
@@ -45,11 +42,12 @@ data class Post(
     val fromId: Int,
     val createBy: Int,
     val date: Int,
-    val text: String,
+    val text: String? = null,
     val replyOwnerId: Int,
     val replyPostId: Int,
     val friendOnly: Boolean,
-    val commentToWall: CommentToWall
+    val commentToWall: CommentToWall,
+    val attachements: Array<Attachment>
 )
 
 data class CommentToWall(
@@ -59,6 +57,7 @@ data class CommentToWall(
     val canClose: Boolean,
     val canOpen: Boolean
 )
+
 
 class WallService { // object заменен на class  для проверки тестов
     var posts = emptyArray<Post>()
@@ -96,9 +95,7 @@ class WallService { // object заменен на class  для проверки
         }
         return updateTrue
     }
-
-
-    }
+}
 
 
 
