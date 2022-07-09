@@ -3,37 +3,44 @@ import java.util.*
 
 fun main() {
     val commentToWall = CommentToWall(5, true, true, false, false)
+    val commentToWall2 = CommentToWall(1, false, false, false, false)
+    val commentToWall3 = CommentToWall(1, true, true, true, true)
 
     val post = Post(
         5, 1, 2, 1, 356, "Super",
-        3, 1, false, commentToWall,arrayOf(audioAttachment(), videoAttachment())
+        3, 1, false, commentToWall, arrayOf(audioAttachment(), videoAttachment())
     )
-    /*val post2 = Post(
+    val post2 = Post(
         1, 3, 2, 1, 35, "Super",
-        3, 1, false, commentToWall
+        3, 1, false, commentToWall, arrayOf(audioAttachment(), videoAttachment())
     )
     val post3 = Post(
         1, 55, 2, 1, 35, "Super",
-        3, 1, false, commentToWall
+        3, 1, false, commentToWall, arrayOf(audioAttachment(), videoAttachment())
     )
     val post4 = Post(
         6, 9, 2, 1, 35, "Super",
-        3, 1, false, commentToWall
+        3, 1, false, commentToWall, arrayOf(audioAttachment(), videoAttachment())
     )
     val postTest = Post(
         3, 222, 2, 1, 35, "Super",
-        3, 1, false, commentToWall
-    )*/
+        3, 1, false, commentToWall, arrayOf(audioAttachment(), videoAttachment())
+    )
 
     // Убрано для проверки тестов
-    /* println(WallService.add(post2))
-     println(WallService.add(post))
-     println(WallService.add(post3))
-     println(WallService.add(post4))
+    println(WallService.add(post2))
+    println(WallService.add(post))
+    println(WallService.add(post3))
+    println(WallService.add(post4))
+    println(WallService.createComment(2, commentToWall2))
+    println(WallService.createComment(3, commentToWall))
+    println(WallService.createComment(15, commentToWall3))
 
-     print(WallService.update(postTest))*/
+    //print(WallService.update(postTest))
 
 }
+
+class PostNotFounException(message: String) : RuntimeException(message)
 
 
 data class Post(
@@ -59,8 +66,9 @@ data class CommentToWall(
 )
 
 
-class WallService { // object заменен на class  для проверки тестов
+object WallService { // object заменен на class  для проверки тестов
     var posts = emptyArray<Post>()
+    private var comments = emptyArray<CommentToWall>()
 
     fun add(post: Post): Post {
         if (posts?.isEmpty() ?: true) {
@@ -95,7 +103,23 @@ class WallService { // object заменен на class  для проверки
         }
         return updateTrue
     }
-}
+
+    fun createComment(postId: Int, comment: CommentToWall): CommentToWall {
+        var x = 0
+        for (post in posts) {
+            if (post.id == postId) {
+                comments += comment
+                x++
+            }
+        }
+        if (x == 0) {
+            throw PostNotFounException("Post with id = $postId  is not found")
+        }
+            return comments.last()
+        }
+    }
+
+
 
 
 
