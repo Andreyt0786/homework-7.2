@@ -28,19 +28,19 @@ fun main() {
     )
 
     // Убрано для проверки тестов
-    println(WallService.add(post2))
+  /*  println(WallService.add(post2))
     println(WallService.add(post))
     println(WallService.add(post3))
     println(WallService.add(post4))
     println(WallService.createComment(2, commentToWall2))
     println(WallService.createComment(3, commentToWall))
-    println(WallService.createComment(15, commentToWall3))
+    println(WallService.createComment(15, commentToWall3))*/
 
     //print(WallService.update(postTest))
 
 }
 
-class PostNotFounException(message: String) : RuntimeException(message)
+class PostNotFoundException(message: String) : RuntimeException(message)
 
 
 data class Post(
@@ -66,7 +66,7 @@ data class CommentToWall(
 )
 
 
-object WallService { // object заменен на class  для проверки тестов
+class WallService { // object заменен на class  для проверки тестов
     var posts = emptyArray<Post>()
     private var comments = emptyArray<CommentToWall>()
 
@@ -113,7 +113,7 @@ object WallService { // object заменен на class  для проверк�
             }
         }
         if (x == 0) {
-            throw PostNotFounException("Post with id = $postId  is not found")
+            throw PostNotFoundException("Post with id = $postId  is not found")
         }
             return comments.last()
         }
